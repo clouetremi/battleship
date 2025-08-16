@@ -18,18 +18,19 @@ function isSunk(hitShip) {
     }
 }
 
-// class Gameboard {
-//     constructor() {
-//     }
-//     placeShip(x, y) {
-//         return new Ship[x][y];
-//     }
-// }
+class Gameboard {
+    constructor(ship) {
+        this.ship = ship;
+        ship = new Ship(4, 0, "notSunk"); 
+        return ship;
+    }
 
-// ship2.hit();
-// isSunk(ship2);
-
+    placeShip(x) {
+        const coordinates = x;
+        return coordinates; 
+    }
+}
 
 module.exports = {
-    Ship, isSunk
+    Ship, isSunk, Gameboard
 }
