@@ -8,27 +8,28 @@ class Ship {
     }
 
     hit() {
-        this.hitTimes++; 
+        this.hitTimes++;
     }
 }
 
 function isSunk(hitShip) {
-if (hitShip.hitTimes >= hitShip.length) {
-    hitShip.isSunk = "isSunk"; 
+    if (hitShip.hitTimes >= hitShip.length) {
+        hitShip.isSunk = "isSunk";
+    }
 }
-}
 
-const ship1 = new Ship(4, 2, "notSunk");
-const ship2 = new Ship(4, 3, "notSunk")
+// class Gameboard {
+//     constructor() {
+//     }
+//     placeShip(x, y) {
+//         return new Ship[x][y];
+//     }
+// }
 
-ship2.hit();
-isSunk(ship2); 
+// ship2.hit();
+// isSunk(ship2);
 
-console.log(ship1);
-console.log(ship2);
 
 module.exports = {
-    ship1,
-    ship2,
-    isSunk
+    Ship, isSunk
 }
