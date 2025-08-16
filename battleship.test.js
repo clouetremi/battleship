@@ -30,4 +30,9 @@ test("Gameboard should be able to place ships at coordinates x/y", () => {
     expect(ship3.x).toEqual([8])
 })
 
-
+test("Gameboard should return coordinates", () => {
+    const ship4 = new Gameboard(); 
+    ship4.x = [9];
+    ship4.y = [9]; 
+    expect(ship4.coordinates).toEqual([9][9])
+})

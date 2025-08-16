@@ -23,6 +23,7 @@ class Gameboard {
         ship = new Ship(4, 0, "notSunk"); 
         ship.x = [x]; 
         ship.y = [y]; 
+        ship.coordinates = [x][y];
         return ship;
     }
 }
