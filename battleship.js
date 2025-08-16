@@ -1,4 +1,4 @@
-console.log("test");
+// battleship.js 
 
 class Ship {
     constructor(length, hitTimes, isSunk) {
@@ -19,12 +19,16 @@ function isSunk(hitShip) {
 }
 
 class Gameboard {
-    constructor(ship, x, y) {
-        ship = new Ship(4, 0, "notSunk"); 
-        ship.x = [x]; 
-        ship.y = [y]; 
-        ship.coordinates = [x][y];
-        return ship;
+    constructor(x, y) {
+        this.ship = new Ship(4, 0, "notSunk");
+        this.ship.coordinates = [x,y];
+
+    }
+
+    receiveAttack(x, y) {
+        if (this.coordinates[0] === x && this.coordinates[1] === y) {
+            this.ship.hit(); 
+        }
     }
 }
 

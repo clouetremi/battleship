@@ -1,3 +1,5 @@
+// battleship.test.js 
+
 const { default: expect } = require("expect");
 const { Ship, isSunk, Gameboard } = require("./battleship");
 
@@ -21,7 +23,7 @@ test("should find the right isSunk after ship is hitted", () => {
 
 test("Gameboard should call a new Ship", () => {
     const ship2 = new Gameboard();
-    expect(ship2.length).toBe(4);
+    expect(ship2.ship.length).toBe(4);
 });
 
 test("Gameboard should be able to place ships at coordinates x/y", () => {
@@ -31,8 +33,14 @@ test("Gameboard should be able to place ships at coordinates x/y", () => {
 })
 
 test("Gameboard should return coordinates", () => {
-    const ship4 = new Gameboard(); 
-    ship4.x = [9];
-    ship4.y = [9]; 
-    expect(ship4.coordinates).toEqual([9][9])
+    const ship4 = new Gameboard();
+    ship4.coordinates = [9, 9]
+    expect(ship4.coordinates).toEqual([9,9])
+})
+
+test("receive attack should increase hitTimes if sames coordinates", () => {
+    const ship4 = new Gameboard();
+    ship4.coordinates = [9,9]
+    ship4.receiveAttack(9, 9); 
+    expect(ship4.ship.hitTimes).toBe(1);
 })
