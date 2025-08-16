@@ -19,15 +19,11 @@ function isSunk(hitShip) {
 }
 
 class Gameboard {
-    constructor(ship) {
-        this.ship = ship;
+    constructor(ship, x, y) {
         ship = new Ship(4, 0, "notSunk"); 
+        ship.x = [x]; 
+        ship.y = [y]; 
         return ship;
-    }
-
-    placeShip(x) {
-        const coordinates = x;
-        return coordinates; 
     }
 }
 

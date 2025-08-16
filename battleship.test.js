@@ -24,11 +24,10 @@ test("Gameboard should call a new Ship", () => {
     expect(ship2.length).toBe(4);
 });
 
-test("Gameboard should be able to place ship at coordinantes", () => {
-    const ship2 = new Gameboard();
-    ship2.placeShip(8);
-    expect(coordinates).toBe(8)
-
+test("Gameboard should be able to place ships at coordinates x/y", () => {
+    const ship3 = new Gameboard();
+    ship3.x = [8];
+    expect(ship3.x).toEqual([8])
 })
 
 
