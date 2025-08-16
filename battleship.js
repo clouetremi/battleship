@@ -12,11 +12,17 @@ class Ship {
     }
 }
 
-const ship1 = new Ship(35, 2, "isSunk");
-const ship2 = new Ship(10, 5, "notSunk")
+function isSunk(hitShip) {
+if (hitShip.hitTimes >= hitShip.length) {
+    hitShip.isSunk = "isSunk"; 
+}
+}
 
-ship2.hit()
-ship2.hit()
+const ship1 = new Ship(4, 2, "notSunk");
+const ship2 = new Ship(4, 3, "notSunk")
+
+ship2.hit();
+isSunk(ship2); 
 
 console.log(ship1);
 console.log(ship2);
@@ -24,5 +30,5 @@ console.log(ship2);
 module.exports = {
     ship1,
     ship2,
-    hit
+    isSunk
 }
