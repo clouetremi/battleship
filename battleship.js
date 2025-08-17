@@ -10,28 +10,33 @@ class Ship {
     hit() {
         this.hitTimes++;
     }
-}
 
-function isSunk(hitShip) {
-    if (hitShip.hitTimes >= hitShip.length) {
-        hitShip.isSunk = "isSunk";
-    }
-}
-
-class Gameboard {
-    constructor(x, y) {
-        this.ship = new Ship(4, 0, "notSunk");
-        this.ship.coordinates = [x,y];
-
-    }
-
-    receiveAttack(x, y) {
-        if (this.coordinates[0] === x && this.coordinates[1] === y) {
-            this.ship.hit(); 
+    checkIfSunk() {
+        if (this.hitTimes >= this.length) {
+            this.isSunk = "isSunk";
         }
     }
 }
 
+
+class Gameboard {
+    constructor(size = 10) {
+        this.size = size;
+        this.ships = [];
+    }
+
+    placeShip(x, y, length, hitTimes, isSunk) {
+        const ship = new Ship(length, hitTimes, isSunk);
+        ship.coordinates = [x, y];
+        this.ships.push(ship);
+        return ship
+    }
+}
+
+const board = new Gameboard();
+const newShip = board.placeShip(9, 9, 4, 0, "notSunk");
+console.log(newShip)
+
 module.exports = {
-    Ship, isSunk, Gameboard
+    Ship, Gameboard
 }
