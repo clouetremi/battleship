@@ -40,9 +40,21 @@ class Gameboard {
                 return "hit!";
             }
         }
-        return "miss!"; 
+        const missedShot = [x, y]; 
+        return missedShot; 
+    }
+
+    checkIfAllSunk() {
+        for (let ship of this.ships) {
+            if (ship.isSunk !== "isSunk") {
+                return "there are still ships no sunk"
+            } 
+        } 
+        return "all ships are sunk"
     }
 }
+
+
 
 
 const board = new Gameboard();
@@ -53,8 +65,10 @@ board.receiveAttack(9, 9)
 board.receiveAttack(9, 9)
 board.receiveAttack(9, 9)
 board.receiveAttack(9, 9)
+const missedShot = board.receiveAttack(8, 8)
 
-console.log(newShip)
+console.log(newShip);
+console.log(missedShot);
 
 
 module.exports = {

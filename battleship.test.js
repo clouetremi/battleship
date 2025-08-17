@@ -38,4 +38,17 @@ test("function receiveAttack should call function hit on a ship", () => {
     const newShip = board.placeShip(9, 9, 4, 3, "notSunk"); 
     board.receiveAttack(9,9);
     expect(newShip.hitTimes).toBe(4);
+});
+
+test("should keep track of missed attacks", () => {
+    const board = new Gameboard(); 
+    const newShip = board.placeShip(9, 9, 4, 3, "notSunk"); 
+    const missedShot = board.receiveAttack(8, 8);
+    expect(missedShot).toEqual([8,8])
+})
+
+test("should report if all ships have been sunk", () => {
+    const board = new Gameboard(); 
+    const newShip = board.placeShip(9, 9, 4, 4, "isSunk"); 
+     expect(board.checkIfAllSunk()).toMatch("all ships are sunk")
 })
