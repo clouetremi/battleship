@@ -32,3 +32,10 @@ test("Gameboard should return coordinates", () => {
     ship4.coordinates = [9, 9]
     expect(ship4.coordinates).toEqual([9,9])
 })
+
+test("function receiveAttack should call function hit on a ship", () => {
+    const board = new Gameboard(); 
+    const newShip = board.placeShip(9, 9, 4, 3, "notSunk"); 
+    board.receiveAttack(9,9);
+    expect(newShip.hitTimes).toBe(4);
+})
