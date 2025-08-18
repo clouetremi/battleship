@@ -1,10 +1,9 @@
 // battleship.js 
 
 class Ship {
-    constructor(length, hitTimes, isSunk) {
+    constructor(length, hitTimes) {
         this.length = length;
         this.hitTimes = hitTimes;
-        this.isSunk = isSunk;
     }
 
     hit() {
@@ -12,63 +11,72 @@ class Ship {
     }
 
     checkIfSunk() {
-        if (this.hitTimes >= this.length) {
-            this.isSunk = "isSunk";
-        }
+        return this.length === this.hitTimes; 
     }
 }
 
 
 class Gameboard {
+    shiplist = []; 
     constructor(size = 10) {
-        this.size = size;
-        this.ships = [];
-    }
-
-    placeShip(x, y, length, hitTimes, isSunk) {
-        const ship = new Ship(length, hitTimes, isSunk);
-        ship.coordinates = [x, y];
-        this.ships.push(ship);
-        return ship
-    }
-
-    receiveAttack(x, y) {
-        for (let ship of this.ships) {
-            if (ship.coordinates[0] === x && ship.coordinates[1] === y) {
-                ship.hit(); 
-                ship.checkIfSunk(); 
-                return "hit!";
+        const initialGrid = []; 
+        for (let i = 0; i < size; i++) {
+            const array = []; 
+            for (let j = 0; j < size; j++) {
+                array.push(Cell(i, j)); 
             }
+            initialGrid.push(array); 
         }
-        const missedShot = [x, y]; 
-        return missedShot; 
+        // sauvegarde la grille sous la propriété de l'objet créé par la classe
+        this.grid = initialGrid; 
     }
 
-    checkIfAllSunk() {
-        for (let ship of this.ships) {
-            if (ship.isSunk !== "isSunk") {
-                return "there are still ships no sunk"
-            } 
-        } 
-        return "all ships are sunk"
+    isValidMove(x, y) {
+        // const shipCoord = [x, y]
+        if (this.grid[x][y] === "sea") {
+            return true; 
+        }
     }
+
+
+
+    // placeShip(x, y, length, ship, direction) {
+    //     if isValidMove(x, y, ship, direction) {
+    //     }
+    // }
+
+    // receiveAttack(x, y) {
+    //     for (let ship of this.ships) {
+    //         if (ship.coordinates[0] === x && ship.coordinates[1] === y) {
+    //             ship.hit(); 
+    //             ship.checkIfSunk(); 
+    //             return "hit!";
+    //         }
+    //     }
+    //     const missedShot = [x, y]; 
+    //     return missedShot; 
+    // }
+
+    // checkIfAllSunk() {
+    //     for (let ship of this.ships) {
+    //         if (ship.isSunk !== "isSunk") {
+    //             return "there are still ships no sunk"
+    //         } 
+    //     } 
+    //     return "all ships are sunk"
+    // }
+}
+
+function Cell() {
+    let tile = "sea";
+    return tile; 
 }
 
 
-
-
-const board = new Gameboard();
-const newShip = board.placeShip(9, 9, 4, 0, "notSunk");
-console.log(newShip)
-
-board.receiveAttack(9, 9)
-board.receiveAttack(9, 9)
-board.receiveAttack(9, 9)
-board.receiveAttack(9, 9)
-const missedShot = board.receiveAttack(8, 8)
-
-console.log(newShip);
-console.log(missedShot);
+    const board = new Gameboard(); 
+    console.log(board);
+    console.log(board.grid[0][0]);
+    console.log(board.isValidMove(1, 1)); 
 
 
 module.exports = {
