@@ -31,10 +31,19 @@ class Gameboard {
         this.grid = initialGrid; 
     }
 
-    isValidMove(x, y) {
-        // const shipCoord = [x, y]
+    // isValidMove(x, y, ship, direction) {
+    //     // const shipCoord = [x, y]
+    //     if (this.grid[x][y] === "sea") {
+    //         return true; 
+    //     }
+    // }
+
+    isValidMove(x, y, ship, direction) {
         if (this.grid[x][y] === "sea") {
-            return true; 
+            if (direction = "v") {
+                for (let i = )
+            }
+            } 
         }
     }
 
