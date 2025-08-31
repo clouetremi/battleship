@@ -30,17 +30,28 @@ class Gameboard {
         this.grid = initialGrid;
     }
 
-    // isValidMove(x, y, ship, direction) {
-    //     if (Tile[x, y] === isWater()) {
-    //         if (direction === "v" && x + ship.length < this.grid.length) {
-    //             return true;
-    //         } else if (direction === "h" && y + ship.length < this.grid[x].length) {
-    //             return true;
-    //         }
-    //     } else {
-    //         return "this move is not valid"
-    //     }
-    // }
+    placeShip(x, y, length, direction) {
+
+        const ship = new Ship(length, 0);
+
+        if (direction === "h") {
+            if (x >= 0 && x < this.grid.length &&
+                y >= 0 && y + ship.length <= this.grid.length) {
+
+                for (let i = 0; i < ship.length; i++) {
+                    if (this.grid[x][y + i] !== "x") {
+                        return false;
+                    }
+                }
+
+                for (let i = 0; i < ship.length; i++) {
+                    this.grid[x][y + i] = "S";
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 const board = new Gameboard();
