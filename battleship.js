@@ -15,20 +15,6 @@ class Ship {
     }
 }
 
-class Tile {
-    constructor(status = "water", coordinate) {
-        this.status = status;
-        this.coordinate = coordinate; 
-    }
-
-    isWater() {
-        if (this.status === "water") {
-            return true; 
-        }
-    }
-}
-
-
 class Gameboard {
     shiplist = [];
     constructor(size = 10) {
@@ -36,7 +22,7 @@ class Gameboard {
         for (let i = 0; i < size; i++) {
             const array = [];
             for (let j = 0; j < size; j++) {
-                array.push(new Tile(i, j));
+                array.push("x");
             }
             initialGrid.push(array);
         }
@@ -44,24 +30,22 @@ class Gameboard {
         this.grid = initialGrid;
     }
 
-    isValidMove(x, y, ship, direction) {
-        if (Tile[x, y] === isWater()) {
-            if (direction === "v" && x + ship.length < this.grid.length) {
-                return true;
-            } else if (direction === "h" && y + ship.length < this.grid[x].length) {
-                return true;
-            }
-        } else {
-            return "this move is not valid"
-        }
-    }
+    // isValidMove(x, y, ship, direction) {
+    //     if (Tile[x, y] === isWater()) {
+    //         if (direction === "v" && x + ship.length < this.grid.length) {
+    //             return true;
+    //         } else if (direction === "h" && y + ship.length < this.grid[x].length) {
+    //             return true;
+    //         }
+    //     } else {
+    //         return "this move is not valid"
+    //     }
+    // }
 }
 
-const tile1 = new Tile("water", [1, 1]); 
-console.log(tile1);
+const board = new Gameboard();
+console.log(board)
 
-const board = new Gameboard(); 
-console.log(board); 
 
 module.exports = {
     Ship, Gameboard

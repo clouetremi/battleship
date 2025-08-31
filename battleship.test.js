@@ -18,3 +18,9 @@ test("should see if the ship is sunk", () => {
     ship1.hit(); 
     expect(ship1.checkIfSunk()).toEqual(true); 
 })
+
+test("should check my board get 10 row & 10 col", () => {
+    const board = new Gameboard(); 
+    expect(board.grid.length).toEqual(10); 
+    expect(board.grid[0].length).toEqual(10);
+})
