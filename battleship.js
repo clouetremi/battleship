@@ -11,7 +11,7 @@ class Ship {
     }
 
     checkIfSunk() {
-        return this.length === this.hitTimes;
+        return this.hits >= this.length;
     }
 }
 
@@ -62,8 +62,6 @@ console.log(tile1);
 
 const board = new Gameboard(); 
 console.log(board); 
-
-const testMove = board.isValidMove(1, 1, ship, "v");
 
 module.exports = {
     Ship, Gameboard
