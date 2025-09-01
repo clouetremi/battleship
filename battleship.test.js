@@ -54,7 +54,18 @@ test("should see if ships are well pushed in the array", () => {
     
     const cellA = board.grid[1][1];
     const cellB = board.grid[1][2];
-
+    
     expect(board.shiplist.length).toBe(1); 
     expect(board.shiplist[0]).toBe(cellA);
 })
+
+// test("should see if receiveAttack works on a normal cell") {
+//     const board = new Gameboard(); 
+//     board.placeShip(1, 1, 1, "h");
+//     const ship1 = board.grid[1][1];
+
+//     board.receiveAttack(1, 1); 
+
+//     expect(ship1.hits).toBe(1); // pour vérifier que ship a bien été touché
+    
+// }

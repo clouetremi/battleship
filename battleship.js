@@ -71,6 +71,15 @@ class Gameboard {
         }
         return false;
     }
+
+    receiveAttack(x, y) {
+
+        const attackArea = this.grid[x][y]; 
+
+        if (attackArea !== "x") {
+            attackArea.hit(); 
+        }
+    }
 }
 
 
