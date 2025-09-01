@@ -31,3 +31,14 @@ test("should be able to place ship horizontally", () => {
     expect(board.grid[1][1]).toEqual("S"); 
     expect(board.grid[1][2]).toEqual("S"); 
 })
+
+test("should not be possible to place a ship outside the board", () => {
+    const board = new Gameboard(); 
+    expect(board.placeShip(1, 12, 2, "h")).toEqual(false); 
+    expect(board.placeShip(11, 10, 2, "h")).toEqual(false); 
+})
+
+test("should check the length of ship when placing", () => {
+    const board = new Gameboard(); 
+    expect(board.placeShip(4, 7, 4, "h")).toEqual(false);   
+})

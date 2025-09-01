@@ -49,8 +49,23 @@ class Gameboard {
                 }
                 return true;
             }
+        } else if (direction === "v") {
+            if (x >= 0 && x < this.grid.length &&
+                y >= 0 && y + ship.length <= this.grid.length) {
+
+                for (let i = 0; i < ship.length; i++) {
+                    if (this.grid[x + i][y] !== "x") {
+                        return false;
+                    }
+                }
+
+                for (let i = 0; i < ship.length; i++) {
+                    this.grid[x + i][y] = "S";
+                }
+                return true;
+            }
         }
-        return false;
+        return false; 
     }
 }
 
