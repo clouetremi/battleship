@@ -16,6 +16,8 @@ class Ship {
 }
 
 class Gameboard {
+    // syntaxe moderne pour écrire constructor(size = 10) {
+    // this.shiplist = []; ... }
     shiplist = [];
     constructor(size = 10) {
         const initialGrid = [];
@@ -45,13 +47,14 @@ class Gameboard {
                 }
 
                 for (let i = 0; i < ship.length; i++) {
-                    this.grid[x][y + i] = "S";
+                    this.grid[x][y + i] = ship;
                 }
+                this.shiplist.push(ship);
                 return true;
             }
         } else if (direction === "v") {
-            if (x >= 0 && x < this.grid.length &&
-                y >= 0 && y + ship.length <= this.grid.length) {
+            if (x >= 0 && x + ship.length <= this.grid.length &&
+                y >= 0 && y < this.grid.length) {
 
                 for (let i = 0; i < ship.length; i++) {
                     if (this.grid[x + i][y] !== "x") {
@@ -60,17 +63,15 @@ class Gameboard {
                 }
 
                 for (let i = 0; i < ship.length; i++) {
-                    this.grid[x + i][y] = "S";
+                    this.grid[x + i][y] = ship;
                 }
+                this.shiplist.push(ship);
                 return true;
             }
         }
-        return false; 
+        return false;
     }
 }
-
-const board = new Gameboard();
-console.log(board)
 
 
 module.exports = {

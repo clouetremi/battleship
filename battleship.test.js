@@ -27,9 +27,14 @@ test("should check my board get 10 row & 10 col", () => {
 
 test("should be able to place ship horizontally", () => {
     const board = new Gameboard();
-    expect(board.placeShip(1, 1, 2, "h")).toEqual(true); 
-    expect(board.grid[1][1]).toEqual("S"); 
-    expect(board.grid[1][2]).toEqual("S"); 
+
+    expect(board.placeShip(1, 1, 2, "h")).toBe(true);
+    
+    const cellA = board.grid[1][1];
+    const cellB = board.grid[1][2];
+    
+    expect(cellA).toBeInstanceOf(Ship);
+    expect(cellB).toBeInstanceOf(Ship);
 })
 
 test("should not be possible to place a ship outside the board", () => {
@@ -41,4 +46,15 @@ test("should not be possible to place a ship outside the board", () => {
 test("should check the length of ship when placing", () => {
     const board = new Gameboard(); 
     expect(board.placeShip(4, 7, 4, "h")).toEqual(false);   
+})
+
+test("should see if ships are well pushed in the array", () => {
+    const board = new Gameboard(); 
+    expect(board.placeShip(1, 1, 2, "h")).toBe(true);
+    
+    const cellA = board.grid[1][1];
+    const cellB = board.grid[1][2];
+
+    expect(board.shiplist.length).toBe(1); 
+    expect(board.shiplist[0]).toBe(cellA);
 })
