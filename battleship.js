@@ -49,7 +49,7 @@ class Gameboard {
                 for (let i = 0; i < ship.length; i++) {
                     this.grid[x][y + i] = ship;
                 }
-                this.shiplist.push(ship);
+                this.shiplist.push({ ship, coords: Array.from({ length: ship.length }, (_, i) => [x, y + i]) });
                 return true;
             }
         } else if (direction === "v") {
@@ -65,7 +65,7 @@ class Gameboard {
                 for (let i = 0; i < ship.length; i++) {
                     this.grid[x + i][y] = ship;
                 }
-                this.shiplist.push(ship);
+                this.shiplist.push({ ship, coords: Array.from({ length: ship.length }, (_, i) => [x + i, y]) });
                 return true;
             }
         }
@@ -80,19 +80,29 @@ class Gameboard {
 
         if (attackArea === "x") {
             this.grid[x][y] = "missed"
-        } else if (attackArea instanceof Ship) {
-            attackArea.hit(); 
-            this.grid[x][y] = "hit"
+        } else if (attackArea === "ship") {
+            this.grid[x][y] = "hit";
+
+            for (const { ship, coords } of this.shiplist) {
+                if (coords.some(([cx, cy]) => cx === x && cy === y)) {
+                    ship.hit();
+                    break;
+                }
+            }
         }
 
     }
+
+    checkIfAllSunk() {
+        return this.shiplist.every(({ ship }) => ship.checkIfSunk());
+    }
 }
 
-const board = new Gameboard(); 
-board.placeShip(1, 1, 3, "h"); 
-board.receiveAttack(1,1);
-board.receiveAttack(1,8);
-console.log(board);
+// const board = new Gameboard(); 
+// board.placeShip(1, 1, 3, "h"); 
+// board.receiveAttack(1,1);
+// board.receiveAttack(1,8);
+// console.log(board);
 
 module.exports = {
     Ship, Gameboard

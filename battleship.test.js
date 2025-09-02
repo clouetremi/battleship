@@ -77,3 +77,12 @@ test("should check if the board can record a miss shoot", () => {
     board.receiveAttack(1, 1); 
     expect(board.grid[1][1]).toBe("missed")
 })
+
+test("board should check if all ships are sunk", () => {
+    const board = new Gameboard(); 
+    expect(board.checkIfAllSunk()).toBe(true);
+    
+    board.placeShip(1, 1, 1, "h"); 
+    board.receiveAttack(1, 1);
+    expect(board.checkIfAllSunk()).toBe(true);
+})
