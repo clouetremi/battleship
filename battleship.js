@@ -72,16 +72,27 @@ class Gameboard {
         return false;
     }
 
+
+
     receiveAttack(x, y) {
 
-        const attackArea = this.grid[x][y]; 
+        const attackArea = this.grid[x][y];
 
-        if (attackArea !== "x") {
+        if (attackArea === "x") {
+            this.grid[x][y] = "missed"
+        } else if (attackArea instanceof Ship) {
             attackArea.hit(); 
+            this.grid[x][y] = "hit"
         }
+
     }
 }
 
+const board = new Gameboard(); 
+board.placeShip(1, 1, 3, "h"); 
+board.receiveAttack(1,1);
+board.receiveAttack(1,8);
+console.log(board);
 
 module.exports = {
     Ship, Gameboard
