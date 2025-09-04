@@ -33,8 +33,8 @@ test("should be able to place ship horizontally", () => {
     const cellA = board.grid[1][1];
     const cellB = board.grid[1][2];
     
-    expect(cellA).toBeInstanceOf(Ship);
-    expect(cellB).toBeInstanceOf(Ship);
+    expect(cellA).toBe("ship");
+    expect(cellB).toBe("ship");
 })
 
 test("should not be possible to place a ship outside the board", () => {
