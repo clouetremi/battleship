@@ -1,0 +1,20 @@
+h1 {
+    justify-content: center;
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: repeat(10, 50px);
+    gap: 0;
+}
+
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
