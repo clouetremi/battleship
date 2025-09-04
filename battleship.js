@@ -112,12 +112,15 @@ class Player {
     }
 }
 
-// const board = new Gameboard(); 
-// board.placeShip(1, 1, 3, "h"); 
-// board.receiveAttack(1,1);
-// board.receiveAttack(1,2);
-// console.log(board);
-
 module.exports = {
     Ship, Gameboard, Player
+}
+
+// Pour le navigateur uniquement
+//  Permet d'utiliser require() côté Jest et 
+// d'avoir mes classes accessibles dans le navigateur
+if (typeof window !== "undefined") {
+    window.Ship = Ship; 
+    window.Gameboard = Gameboard; 
+    window.Player = Player; 
 }
