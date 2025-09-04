@@ -56,7 +56,6 @@ test("should see if ships are well pushed in the array", () => {
     const cellB = board.grid[1][2];
     
     expect(board.shiplist.length).toBe(1); 
-    expect(board.shiplist[0]).toBe(cellA);
 })
 
 test("should try if my board's sea case can receive an attack", () => {

@@ -47,8 +47,15 @@ class Gameboard {
                 }
 
                 for (let i = 0; i < ship.length; i++) {
-                    this.grid[x][y + i] = ship;
+                    this.grid[x][y + i] = "ship";
                 }
+                // { ship, ... } raccourci d'object qui équivaut à { ship: ship, ... }
+                // Array.from créé un tableau de taille ship.length
+                // 1er paramètre { length: ship.length } dit combien d'éléments on veut
+
+                // (_, i) => [x, y + i]
+                // fonction de mapping reçoit 2 arguments (valeurCourante, index)
+                // On met "_" pour ignorer, i est l'index (1, 2, 3)
                 this.shiplist.push({ ship, coords: Array.from({ length: ship.length }, (_, i) => [x, y + i]) });
                 return true;
             }
@@ -63,7 +70,7 @@ class Gameboard {
                 }
 
                 for (let i = 0; i < ship.length; i++) {
-                    this.grid[x + i][y] = ship;
+                    this.grid[x + i][y] = "ship";
                 }
                 this.shiplist.push({ ship, coords: Array.from({ length: ship.length }, (_, i) => [x + i, y]) });
                 return true;
@@ -98,11 +105,11 @@ class Gameboard {
     }
 }
 
-// const board = new Gameboard(); 
-// board.placeShip(1, 1, 3, "h"); 
-// board.receiveAttack(1,1);
-// board.receiveAttack(1,8);
-// console.log(board);
+const board = new Gameboard(); 
+board.placeShip(1, 1, 3, "h"); 
+board.receiveAttack(1,1);
+board.receiveAttack(1,2);
+console.log(board);
 
 module.exports = {
     Ship, Gameboard
