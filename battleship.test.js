@@ -1,7 +1,7 @@
 // battleship.test.js 
 
 const { default: expect } = require("expect");
-const { Ship, Gameboard } = require("./battleship");
+const { Ship, Gameboard, Player } = require("./battleship");
 
 test("should find the right hitTimes", () => {
     const ship1 = new Ship(4, 2);
@@ -84,4 +84,9 @@ test("board should check if all ships are sunk", () => {
     board.placeShip(1, 1, 1, "h"); 
     board.receiveAttack(1, 1);
     expect(board.checkIfAllSunk()).toBe(true);
+})
+
+test("each player should contain its own gameboard", () => {
+    const player1 = new Player("human"); 
+    expect(player1.ownBoard).toBeInstanceOf(Gameboard);
 })

@@ -105,12 +105,19 @@ class Gameboard {
     }
 }
 
-const board = new Gameboard(); 
-board.placeShip(1, 1, 3, "h"); 
-board.receiveAttack(1,1);
-board.receiveAttack(1,2);
-console.log(board);
+class Player {
+    constructor(type = "human") {
+        this.type = type; // human or computer
+        this.ownBoard = new Gameboard();
+    }
+}
+
+// const board = new Gameboard(); 
+// board.placeShip(1, 1, 3, "h"); 
+// board.receiveAttack(1,1);
+// board.receiveAttack(1,2);
+// console.log(board);
 
 module.exports = {
-    Ship, Gameboard
+    Ship, Gameboard, Player
 }
