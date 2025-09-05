@@ -1,9 +1,11 @@
 h1 {
     justify-content: center;
     text-align: center;
+    
 }
 
-.board {
+.board1, 
+.board2 {
     display: grid;
     justify-content: center;
     text-align: center;
@@ -12,9 +14,8 @@ h1 {
     gap: 0;
 }
 
-
 .cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 50px;
+    width: 50px;
+    background-color: aquamarine;
 }
