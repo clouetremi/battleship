@@ -48,6 +48,7 @@
                     if (isEnemy) {
                         cellButton.addEventListener("click", () => {
                             board.receiveAttack(rowIndex, colIndex); 
+                            // appeler une fonction pour l'attaque de l'ordi avec Math.floor(Math.random) 
                             renderBoard(board, container, true);
                         });
                     }
