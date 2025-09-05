@@ -38,8 +38,8 @@
                     cellButton.dataset.col = colIndex;
 
                     if (isEnemy) {
-                        if (cell === "hit") cellButton.textContent = "hit";
-                        else if (cell === "missed") cellButton.textContent = "missed"; 
+                        if (cell === "hit") cellButton.textContent = "💥";
+                        else if (cell === "missed") cellButton.textContent = "🌊"; 
                         else cellButton.textContent = ""; 
                     } else {
                         cellButton.textContent = cell; 
@@ -60,6 +60,19 @@
         }
         const board1Div = document.querySelector(".board1"); 
         const board2Div = document.querySelector(".board2");
+
+        // Generates some ships
+        board1.placeShip(1, 1, 1, "h"); 
+        board1.placeShip(3, 3, 2, "h"); 
+        board1.placeShip(4, 5, 3, "h"); 
+        board1.placeShip(6, 2, 4, "h"); 
+        board1.placeShip(2, 4, 5, "h"); 
+        
+        board2.placeShip(1, 1, 1, "h"); 
+        board2.placeShip(3, 3, 2, "h"); 
+        board2.placeShip(4, 5, 3, "h"); 
+        board2.placeShip(6, 2, 4, "h"); 
+        board2.placeShip(2, 4, 5, "h"); 
     
         renderBoard(board1, board1Div, false);
         renderBoard(board2, board2Div, true);
