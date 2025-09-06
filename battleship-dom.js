@@ -65,7 +65,16 @@
                         else if (cell === "missed") cellButton.textContent = "🌊";
                         else cellButton.textContent = "";
                     } else {
-                        cellButton.textContent = cell;
+                        if (cell === "hit") cellButton.textContent = "💥";
+                        else if (cell === "missed" || cell === "x") cellButton.textContent = "🌊";
+                        else if (cell === "ship") {
+                            const img = document.createElement("img"); 
+                            img.src = "https://cdn-icons-png.flaticon.com/512/77/77521.png";
+                            img.alt = "Ship"; 
+                            img.style.width = "30px";
+                            img.style.height = "30px";
+                            cellButton.appendChild(img);
+                        }
                     }
 
                     if (isEnemy) {
