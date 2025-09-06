@@ -14,14 +14,17 @@
         const board1 = player1.ownBoard;
         const board2 = player2.ownBoard;
 
-        let activePlayer = player1;
+        function computerAttack(playerBoard, container) {
+            let row, col; 
+            do {
+                row = Math.floor(Math.random() * 10);
+                col = Math.floor(Math.random() * 10);  
+            } while (playerBoard.grid[row][col] === "hit" || playerBoard.grid[row][col] === "missed"); 
 
-        const switchPlayerTurn = () => {
-            activePlayer = activePlayer === player1 ? player2 : player1;
+            playerBoard.receiveAttack(row, col); 
+
+            renderBoard(playerBoard, container, false); 
         }
-
-        const getActivePlayer = () => activePlayer;
-
 
         function renderBoard(board, container, isEnemy = false) {
 
@@ -48,8 +51,9 @@
                     if (isEnemy) {
                         cellButton.addEventListener("click", () => {
                             board.receiveAttack(rowIndex, colIndex); 
-                            // appeler une fonction pour l'attaque de l'ordi avec Math.floor(Math.random) 
+                            // appeler une fonction pour l'attaque de l'ordi avec Math.floor(Math.random) pour rowIndex / colIndex
                             renderBoard(board, container, true);
+                            computerAttack(board1, board1Div);
                         });
                     }
 
