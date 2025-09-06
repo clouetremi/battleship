@@ -1,10 +1,10 @@
 h1 {
     justify-content: center;
     text-align: center;
-    
+
 }
 
-.board1, 
+.board1,
 .board2 {
     display: grid;
     justify-content: center;
@@ -18,4 +18,11 @@ h1 {
     height: 50px;
     width: 50px;
     background-color: aquamarine;
+}
+
+.winner {
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 5%;
 }
