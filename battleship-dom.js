@@ -52,14 +52,11 @@
             container.textContent = ""; // reset l'affichage
 
             board.grid.forEach((row, rowIndex) => {
-                const rowDiv = document.createElement("div");
-                rowDiv.classList.add("row");
-
                 row.forEach((cell, colIndex) => {
                     const cellButton = document.createElement("button");
                     cellButton.classList.add("cell");
-                    cellButton.dataset.row = rowIndex;
-                    cellButton.dataset.col = colIndex;
+                    cellButton.dataset.row = rowIndex; 
+                    cellButton.dataset.col = colIndex; 
 
                     if (isEnemy) {
                         if (cell === "hit") cellButton.textContent = "💥";
@@ -88,11 +85,8 @@
                             checkIfWinner(board1, board2)
                         });
                     }
-
-                    rowDiv.appendChild(cellButton);
+                    container.appendChild(cellButton);
                 });
-
-                container.appendChild(rowDiv);
             })
         }
         const board1Div = document.querySelector(".board1");

@@ -1,23 +1,35 @@
+* {
+    box-sizing: border-box;
+    /* Pour que la ligne de border ne modifie pas la taille réelle du bouton */
+
+}
+
 h1 {
     justify-content: center;
     text-align: center;
+}
 
+.boards {
+    display: grid;
+    grid-template-columns: repeat(2, 30rem);
+    text-align: center;
 }
 
 .board1,
 .board2 {
     display: grid;
     justify-content: center;
-    text-align: center;
     grid-template-rows: repeat(10, 50px);
     grid-template-columns: repeat(10, 50px);
-    gap: 0;
 }
 
 .cell {
     height: 50px;
     width: 50px;
     background-color: aquamarine;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
 }
 
 .winner {
