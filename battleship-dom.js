@@ -16,7 +16,8 @@
 
         // Logique additionelle à battleship.js
         function computerAttack(playerBoard, container) {
-            let row, col;
+            let row, col; // on prépare 2 variables 
+            // on s'assure que l'ordi choisit une case vide
             do {
                 row = Math.floor(Math.random() * 10);
                 col = Math.floor(Math.random() * 10);
@@ -66,10 +67,11 @@
                         else cellButton.textContent = "";
                     } else {
                         if (cell === "hit") cellButton.textContent = "💥";
-                        else if (cell === "missed" || cell === "x") cellButton.textContent = "🌊";
+                        else if (cell === "x") cellButton.textContent = "🌊";
+                        else if (cell === "missed") cellButton.textContent = "⚪";
                         else if (cell === "ship") {
                             const img = document.createElement("img"); 
-                            img.src = "https://cdn-icons-png.flaticon.com/512/77/77521.png";
+                            img.src = "./icon/ship.png"
                             img.alt = "Ship"; 
                             img.style.width = "30px";
                             img.style.height = "30px";
