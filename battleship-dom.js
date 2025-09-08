@@ -24,7 +24,7 @@
             } while (playerBoard.grid[row][col] === "hit" || playerBoard.grid[row][col] === "missed");
 
             playerBoard.receiveAttack(row, col);
-
+            checkIfWinner(board1, board2); 
             renderBoard(playerBoard, container, false);
         }
 
