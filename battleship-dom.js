@@ -24,17 +24,27 @@
             } while (playerBoard.grid[row][col] === "hit" || playerBoard.grid[row][col] === "missed");
 
             playerBoard.receiveAttack(row, col);
-            checkIfWinner(board1, board2); 
             renderBoard(playerBoard, container, false);
         }
 
-        function checkIfWinner(board1, board2) {
+        function desactivateBtn(container) {
+            const buttons = container.querySelectorAll(".cell");
+            buttons.forEach((btn) => {
+                btn.disabled = true; 
+            })
+        }
+
+        function checkIfWinner(board1, board2, board1Div, board2Div) {
             if (board1.checkIfAllSunk()) {
                 displayWinner("Player 2");
+                desactivateBtn(board1Div); 
+                desactivateBtn(board2Div);
                 return true;
             }
             if (board2.checkIfAllSunk()) {
                 displayWinner("Player 1");
+                desactivateBtn(board1Div);
+                desactivateBtn(board2Div);
                 return true;
             }
             return false;
@@ -82,7 +92,7 @@
                             // appeler une fonction pour l'attaque de l'ordi avec Math.floor(Math.random) pour rowIndex / colIndex
                             renderBoard(board, container, true);
                             computerAttack(board1, board1Div);
-                            checkIfWinner(board1, board2)
+                            checkIfWinner(board1, board2, board1Div, board2Div);
                         });
                     }
                     container.appendChild(cellButton);
