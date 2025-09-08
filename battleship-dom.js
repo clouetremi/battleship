@@ -30,14 +30,14 @@
         function desactivateBtn(container) {
             const buttons = container.querySelectorAll(".cell");
             buttons.forEach((btn) => {
-                btn.disabled = true; 
+                btn.disabled = true;
             })
         }
 
         function checkIfWinner(board1, board2, board1Div, board2Div) {
             if (board1.checkIfAllSunk()) {
                 displayWinner("Player 2");
-                desactivateBtn(board1Div); 
+                desactivateBtn(board1Div);
                 desactivateBtn(board2Div);
                 return true;
             }
@@ -65,8 +65,8 @@
                 row.forEach((cell, colIndex) => {
                     const cellButton = document.createElement("button");
                     cellButton.classList.add("cell");
-                    cellButton.dataset.row = rowIndex; 
-                    cellButton.dataset.col = colIndex; 
+                    cellButton.dataset.row = rowIndex;
+                    cellButton.dataset.col = colIndex;
 
                     if (isEnemy) {
                         if (cell === "hit") cellButton.textContent = "💥";
@@ -77,9 +77,9 @@
                         else if (cell === "x") cellButton.textContent = "🌊";
                         else if (cell === "missed") cellButton.textContent = "⚪";
                         else if (cell === "ship") {
-                            const img = document.createElement("img"); 
+                            const img = document.createElement("img");
                             img.src = "./icon/ship.png"
-                            img.alt = "Ship"; 
+                            img.alt = "Ship";
                             img.style.width = "30px";
                             img.style.height = "30px";
                             cellButton.appendChild(img);
@@ -106,20 +106,72 @@
         const board2Div = document.querySelector(".board2");
 
         // Generates some ships
-        board1.placeShip(1, 1, 1, "h");
-        board1.placeShip(3, 3, 2, "h");
-        board1.placeShip(4, 5, 3, "h");
-        board1.placeShip(6, 2, 4, "h");
-        board1.placeShip(2, 4, 5, "h");
 
-        board2.placeShip(1, 1, 1, "h");
-        board2.placeShip(3, 3, 2, "h");
-        board2.placeShip(4, 5, 3, "h");
-        board2.placeShip(6, 2, 4, "h");
-        board2.placeShip(2, 4, 5, "h");
+        function placeShipOnDom(board, shipLength) {
+
+
+            const direction = prompt("Chosse ship direction: h (horizontal) or v (vertical)")
+
+            const boardContainer = document.querySelector(".board1");
+
+            function handleClick(e) {
+                // target retourne toujours une chaîne en maj 
+                if (e.target.tagName !== "BUTTON") return;
+
+                const x = parseInt(e.target.dataset.row);
+                const y = parseInt(e.target.dataset.col);
+
+                const placed = board.placeShip(x, y, shipLength, direction);
+
+                if (placed) {
+                    renderBoard(board, boardContainer, false);
+
+                    boardContainer.removeEventListener("click", handleClick);
+                }
+            }
+            boardContainer.addEventListener("click", handleClick);
+        }
+
+        function placeShipOnDomComputer(board, shipLength, boardContainer) {
+            let placed = false;
+
+            while (!placed) {
+                const x = Math.floor(Math.random() * 10);
+                const y = Math.floor(Math.random() * 10);
+
+                const direction = Math.random() < 0.5 ? "h" : "v";
+
+                if (direction === "h" && x + shipLength > 10) continue;
+                if (direction === "v" && y + shipLength > 10) continue;
+
+                placed = board.placeShip(x, y, shipLength, direction);
+
+                if (placed) {
+                    renderBoard(board, boardContainer, true);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function placeAllShipsComputer(board, boardContainer) {
+            const shipLength = [1, 2, 3, 4, 5];
+            shipLength.forEach(length => {
+                placeShipOnDomComputer(board, length, boardContainer);
+            })
+        }
 
         renderBoard(board1, board1Div, false);
         renderBoard(board2, board2Div, true);
+        alert("start the game by placing your 5 ships");
+
+        placeShipOnDom(board1, 1)
+        placeShipOnDom(board1, 2)
+        placeShipOnDom(board1, 3)
+        placeShipOnDom(board1, 4)
+        placeShipOnDom(board1, 5)
+
+        placeAllShipsComputer(board2, board2Div)
     };
 
 
