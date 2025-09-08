@@ -88,6 +88,9 @@
 
                     if (isEnemy) {
                         cellButton.addEventListener("click", () => {
+
+                            if (board.grid[rowIndex][colIndex] === "hit" || board.grid[rowIndex][colIndex] === "missed") { return };
+
                             board.receiveAttack(rowIndex, colIndex);
                             // appeler une fonction pour l'attaque de l'ordi avec Math.floor(Math.random) pour rowIndex / colIndex
                             renderBoard(board, container, true);
