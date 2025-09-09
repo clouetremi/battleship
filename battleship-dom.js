@@ -13,6 +13,9 @@
 
         const board1 = player1.ownBoard;
         const board2 = player2.ownBoard;
+        
+        const board1Div = document.querySelector(".board1");
+        const board2Div = document.querySelector(".board2");
 
         // Logique additionelle à battleship.js
         function isCellAvailable(playerBoard, row, col) {
@@ -112,8 +115,6 @@
                 });
             })
         }
-        const board1Div = document.querySelector(".board1");
-        const board2Div = document.querySelector(".board2");
 
         // Generates some ships
 
