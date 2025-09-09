@@ -15,16 +15,26 @@
         const board2 = player2.ownBoard;
 
         // Logique additionelle à battleship.js
+        function isCellAvailable(playerBoard, row, col) {
+            if (playerBoard.grid[row][col] === "hit" || playerBoard.grid[row][col] === "missed") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
         function computerAttack(playerBoard, container) {
             let row, col; // on prépare 2 variables 
             // on s'assure que l'ordi choisit une case vide
             do {
                 row = Math.floor(Math.random() * 10);
                 col = Math.floor(Math.random() * 10);
-            } while (playerBoard.grid[row][col] === "hit" || playerBoard.grid[row][col] === "missed");
+            } while (!isCellAvailable(playerBoard, row, col));
 
             playerBoard.receiveAttack(row, col);
             renderBoard(playerBoard, container, false);
+
         }
 
         function desactivateBtn(container) {
