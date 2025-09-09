@@ -141,8 +141,8 @@
 
                 const direction = Math.random() < 0.5 ? "h" : "v";
 
-                if (direction === "h" && x + shipLength > 10) continue;
-                if (direction === "v" && y + shipLength > 10) continue;
+                if (direction === "h" && y + shipLength > 10) continue;
+                if (direction === "v" && x + shipLength > 10) continue;
 
                 placed = board.placeShip(x, y, shipLength, direction);
 
